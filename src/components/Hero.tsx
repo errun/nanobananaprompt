@@ -1,7 +1,3 @@
-"use client";
-
-import { Search } from "lucide-react";
-
 export function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-border/40 bg-gradient-to-b from-background to-zinc-900/50 py-20 sm:py-28">
@@ -29,22 +25,6 @@ export function Hero() {
           Stop guessing parameters. Copy & paste tested prompts for professional
           headshots, cinematic styles, and logos. 100% Free.
         </p>
-
-        {/* Mock Search Bar */}
-        <div className="mx-auto mt-10 max-w-xl">
-          <div className="group relative flex items-center">
-            <Search className="absolute left-4 h-5 w-5 text-muted-foreground transition-colors group-focus-within:text-primary" />
-            <input
-              type="text"
-              placeholder="Try searching for 'Professional Headshot'..."
-              className="h-14 w-full rounded-xl border border-border bg-card pl-12 pr-4 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all"
-              readOnly
-            />
-          </div>
-          <p className="mt-3 text-sm text-muted-foreground">
-            Browse categories below or search for specific styles
-          </p>
-        </div>
       </div>
     </section>
   );
