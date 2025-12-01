@@ -1,6 +1,13 @@
 "use client";
 
 import { useState } from "react";
+
+// Extend Window interface for gtag
+declare global {
+  interface Window {
+    gtag?: (command: string, action: string, params?: Record<string, unknown>) => void;
+  }
+}
 import Image from "next/image";
 import { Copy, Check } from "lucide-react";
 import { toast } from "sonner";
@@ -19,13 +26,23 @@ export function PromptGallery() {
       ? prompts
       : prompts.filter((p) => p.category === activeCategory);
 
-  const handleCopy = async (id: string, text: string) => {
+  const handleCopy = async (id: string, text: string, title: string, category: string) => {
     try {
       await navigator.clipboard.writeText(text);
       setCopiedId(id);
       toast.success("Copied to clipboard!", {
         description: "Prompt is ready to paste.",
       });
+
+      // Track GA4 event
+      if (typeof window !== "undefined" && window.gtag) {
+        window.gtag("event", "copy_prompt", {
+          prompt_id: id,
+          prompt_title: title,
+          prompt_category: category,
+        });
+      }
+
       setTimeout(() => setCopiedId(null), 2000);
     } catch {
       toast.error("Failed to copy", {
@@ -117,7 +134,7 @@ export function PromptGallery() {
                   variant="outline"
                   size="sm"
                   className="w-full transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
-                  onClick={() => handleCopy(prompt.id, prompt.promptText)}
+                  onClick={() => handleCopy(prompt.id, prompt.promptText, prompt.title, prompt.category)}
                 >
                   {copiedId === prompt.id ? (
                     <>
