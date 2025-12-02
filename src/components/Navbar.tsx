@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Banana, Plus } from "lucide-react";
 
@@ -8,12 +9,12 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <Banana className="h-6 w-6 text-primary" />
           <span className="text-xl font-bold tracking-tight">
             NanoBananaPrompt<span className="text-primary">.art</span>
           </span>
-        </a>
+        </Link>
 
         {/* Actions */}
         <div className="flex items-center gap-3">

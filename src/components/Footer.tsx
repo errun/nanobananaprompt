@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Banana } from "lucide-react";
 
 export function Footer() {
@@ -6,12 +7,12 @@ export function Footer() {
       <div className="container mx-auto max-w-6xl px-4 py-12">
         <div className="flex flex-col items-center gap-8 text-center">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2">
             <Banana className="h-5 w-5 text-primary" />
             <span className="text-lg font-bold tracking-tight">
               NanoBananaPrompt<span className="text-primary">.art</span>
             </span>
-          </a>
+          </Link>
 
           {/* Disclaimer */}
           <div className="max-w-2xl rounded-lg border border-border/40 bg-zinc-950/50 px-6 py-4">
