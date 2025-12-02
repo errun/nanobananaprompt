@@ -17,7 +17,11 @@ interface SanityPromptRaw {
 }
 
 async function getPrompts(): Promise<SanityPrompt[]> {
-  const rawPrompts: SanityPromptRaw[] = await client.fetch(promptsQuery);
+  const rawPrompts: SanityPromptRaw[] = await client.fetch(
+    promptsQuery,
+    {},
+    { next: { revalidate: 60 } } // 每60秒重新验证数据
+  );
 
   return rawPrompts.map((prompt) => ({
     _id: prompt._id,
