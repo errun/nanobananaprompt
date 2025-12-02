@@ -15,9 +15,25 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { prompts, categories, type PromptCategory } from "@/data/prompts";
 
-export function PromptGallery() {
+export type PromptCategory = "Headshot" | "Cinematic" | "Logo" | "3D";
+
+export interface SanityPrompt {
+  _id: string;
+  title: string;
+  category: PromptCategory;
+  image: string; // This will be the URL from urlFor
+  promptText: string;
+  tags: string[];
+}
+
+const categories: PromptCategory[] = ["Headshot", "Cinematic", "Logo", "3D"];
+
+interface PromptGalleryProps {
+  prompts: SanityPrompt[];
+}
+
+export function PromptGallery({ prompts }: PromptGalleryProps) {
   const [activeCategory, setActiveCategory] = useState<PromptCategory | "All">("All");
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
@@ -35,13 +51,11 @@ export function PromptGallery() {
       });
 
       // Track GA4 event
-      if (typeof window !== "undefined" && window.gtag) {
-        window.gtag("event", "copy_prompt", {
-          prompt_id: id,
-          prompt_title: title,
-          prompt_category: category,
-        });
-      }
+      globalThis.window?.gtag?.("event", "copy_prompt", {
+        prompt_id: id,
+        prompt_title: title,
+        prompt_category: category,
+      });
 
       setTimeout(() => setCopiedId(null), 2000);
     } catch {
@@ -84,7 +98,7 @@ export function PromptGallery() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filteredPrompts.map((prompt) => (
             <Card
-              key={prompt.id}
+              key={prompt._id}
               className="group overflow-hidden border-border/40 bg-zinc-900 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
             >
               {/* Image */}
@@ -113,7 +127,7 @@ export function PromptGallery() {
 
                 {/* Tags */}
                 <div className="mb-4 flex flex-wrap gap-1.5">
-                  {prompt.tags.map((tag) => (
+                  {prompt.tags?.map((tag) => (
                     <Badge
                       key={tag}
                       variant="outline"
@@ -134,9 +148,9 @@ export function PromptGallery() {
                   variant="outline"
                   size="sm"
                   className="w-full transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
-                  onClick={() => handleCopy(prompt.id, prompt.promptText, prompt.title, prompt.category)}
+                  onClick={() => handleCopy(prompt._id, prompt.promptText, prompt.title, prompt.category)}
                 >
-                  {copiedId === prompt.id ? (
+                  {copiedId === prompt._id ? (
                     <>
                       <Check className="mr-2 h-4 w-4" />
                       Copied!
