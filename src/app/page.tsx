@@ -23,14 +23,16 @@ async function getPrompts(): Promise<SanityPrompt[]> {
     { next: { revalidate: 60 } } // 每60秒重新验证数据
   );
 
-  return rawPrompts.map((prompt) => ({
-    _id: prompt._id,
-    title: prompt.title,
-    category: prompt.category,
-    image: prompt.image ? urlFor(prompt.image).width(800).height(600).url() : "/placeholder.jpg",
-    promptText: prompt.promptText,
-    tags: prompt.tags || [],
-  }));
+	  return rawPrompts.map((prompt) => ({
+	    _id: prompt._id,
+	    title: prompt.title,
+	    category: prompt.category,
+	    image: prompt.image
+	      ? urlFor(prompt.image).width(600).height(450).url()
+	      : "/placeholder.jpg",
+	    promptText: prompt.promptText,
+	    tags: prompt.tags || [],
+	  }));
 }
 
 export default async function Home() {

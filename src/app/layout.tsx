@@ -10,9 +10,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Nano Banana Prompts - Free AI Art Gallery (.art)",
-  description:
-    "Best collection of Nano Banana prompts for professional headshots and design. Copy & paste tested prompts for professional headshots, cinematic styles, and logos. 100% Free.",
+	title: "Nano Banana Prompt - Free Gallery of Tested AI Prompts",
+	description:
+	  "Nano Banana Prompt is a free, community-driven gallery of tested prompts for headshots, cinematic styles and logo design. Copy & paste presets, no parameter guessing.",
   keywords: [
     "nano banana",
     "ai prompts",
@@ -21,13 +21,13 @@ export const metadata: Metadata = {
     "logo design",
     "ai art",
   ],
-  openGraph: {
-    title: "Nano Banana Prompts - Free AI Art Gallery",
-    description:
-      "Best collection of Nano Banana prompts for professional headshots and design.",
-    type: "website",
-    locale: "en_US",
-  },
+	openGraph: {
+	  title: "Nano Banana Prompt - Free Gallery of Tested AI Prompts",
+	  description:
+	    "Nano Banana Prompt is a free, community-driven gallery of tested prompts for headshots, cinematic styles and logo design.",
+	  type: "website",
+	  locale: "en_US",
+	},
 };
 
 export default function RootLayout({

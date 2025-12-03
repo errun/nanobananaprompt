@@ -94,22 +94,23 @@ export function PromptGallery({ prompts }: PromptGalleryProps) {
           </TabsList>
         </Tabs>
 
-        {/* Prompt Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredPrompts.map((prompt) => (
+	        {/* Prompt Grid */}
+	        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+	          {filteredPrompts.map((prompt, index) => (
             <Card
               key={prompt._id}
               className="group overflow-hidden border-border/40 bg-zinc-900 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
             >
-              {/* Image */}
-              <div className="relative aspect-[4/3] overflow-hidden bg-zinc-800">
-                <Image
-                  src={prompt.image}
-                  alt={prompt.title}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
+	              {/* Image */}
+	              <div className="relative aspect-[4/3] overflow-hidden bg-zinc-800">
+	                <Image
+	                  src={prompt.image}
+	                  alt={prompt.title}
+	                  fill
+	                  priority={index === 0}
+	                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+	                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+	                />
                 {/* Category Badge */}
                 <Badge
                   variant="secondary"
