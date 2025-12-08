@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Banana, Plus } from "lucide-react";
+import { Banana, Film } from "lucide-react";
 
 export function Navbar() {
   return (
@@ -18,11 +18,21 @@ export function Navbar() {
 
         {/* Actions */}
         <div className="flex items-center gap-3">
-          <Button variant="ghost" size="sm" className="hidden sm:flex">
-            <Plus className="mr-2 h-4 w-4" />
-            Submit Prompt
-          </Button>
-          <Button size="sm" className="font-semibold">
+	          <Button
+	            asChild
+	            variant="outline"
+	            size="sm"
+	            className="font-semibold"
+	          >
+	            <Link
+	              href="/veo-prompt"
+	              className="flex items-center gap-1.5"
+	            >
+	              <Film className="h-4 w-4" />
+	              <span>Veo Prompt</span>
+	            </Link>
+	          </Button>
+	          <Button size="sm" className="font-semibold">
             Get Headshots
           </Button>
         </div>
